@@ -232,6 +232,9 @@
       const formEl = document.getElementById("form");
       formEl.addEventListener("submit", submitFetch);
 
+      // Wake up the dyno on page load...
+      fetch("https://cslove-api.herokuapp.com/invitations");
+
       function submitFetch(event) {
         event.preventDefault();
         const formData = new FormData(this);
@@ -261,16 +264,6 @@
           if (error instanceof Error) console.warn(error.message);
           else console.warn(error);
         }
-      }
-
-      function submitXHR(event) {
-        event.preventDefault();
-
-        const request = new XMLHttpRequest();
-        const formData = new FormData(this);
-
-        request.open("POST", "http://localhost:4000/");
-        request.send(formData);
       }
     </script>
   </body>
